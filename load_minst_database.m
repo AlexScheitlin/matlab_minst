@@ -55,7 +55,7 @@ num_rows = swapbytes(uint32(A));
 A = fread(fid_images, 1, 'uint32');
 num_cols = swapbytes(uint32(A));
 
-fprintf('Dimensions of each digit: %d x %d\n', num_rows, num_cols);
+fprintf('Dimensions of each digit: %d x %d\n\n', num_rows, num_cols);
 
 % Store each image individually.
 images = zeros(num_rows, num_cols, total_images, 'uint8');
