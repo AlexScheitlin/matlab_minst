@@ -12,6 +12,6 @@ test_size = 100;
 # Specify whether the result of each image classification should be printed or not.
 show_log = 0;
 
-k_nearest_neighbours(k, train_size,test_size,show_log);
+k_nearest_neighbours(k, train_size, test_size, show_log);
 
 clear;

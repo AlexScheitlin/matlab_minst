@@ -7,8 +7,8 @@ function nearest_neighbour(num_of_train_data, num_of_test_data, show_log)
   if (show_log == 1)
     disp('reading data');
   end
-  [train_data, train_labels ] = load_minst_database('data/train-images-idx3-ubyte', 'data/train-labels-idx1-ubyte');
-  [test_data, test_labels] = load_minst_database('data/t10k-images-idx3-ubyte', 'data/t10k-labels-idx1-ubyte');
+  [train_data, train_labels ] = load_minst_database('data/train-images-idx3-ubyte', 'data/train-labels-idx1-ubyte', show_log);
+  [test_data, test_labels] = load_minst_database('data/t10k-images-idx3-ubyte', 'data/t10k-labels-idx1-ubyte', show_log);
 
   errors = 0;
   

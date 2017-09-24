@@ -1,5 +1,5 @@
 # Load the train images and labels.
-[images, labels] = load_minst_database('data/train-images-idx3-ubyte', 'data/train-labels-idx1-ubyte');
+[images, labels] = load_minst_database('data/train-images-idx3-ubyte', 'data/train-labels-idx1-ubyte', 0);
 
 # Display the first n images.
 

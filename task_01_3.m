@@ -8,6 +8,6 @@ test_size = 100;
 # Specify whether the result of each image classification should be printed or not.
 show_log = 0;
 
-nearest_neighbour(train_size,test_size,show_log);
+nearest_neighbour(train_size, test_size, show_log);
 
 clear;
