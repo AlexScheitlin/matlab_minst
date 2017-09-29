@@ -5,6 +5,11 @@ function k_nearest_neighbours(k, num_of_train_data, num_of_test_data, show_log)
   %num_of_test_data: The number of test images to classify.
   %show_log: 1 or 0 to specify whether intermediate steps should be printed to the console or not.
   
+  % Display waitbar for showing progress.
+  h = waitbar(0,'Preparing ...','Name','Classify Test Images',...
+            'CreateCancelBtn',...
+            'setappdata(gcbf,''canceling'',1)');
+  
   % Load the minst train and test datasets.
   if (show_log == 1)
     disp('reading data');
@@ -16,7 +21,18 @@ function k_nearest_neighbours(k, num_of_train_data, num_of_test_data, show_log)
   
   % n = num_of_test_data
   % Classify the first n images of the minst test dataset.
+  %h = waitbar(0,'Initializing waitbar...');
   for i = 1:num_of_test_data
+    % Check for Cancel button press.
+    if getappdata(h,'canceling')
+        fprintf('Aborted!\n');
+        break
+    end
+    
+    % Print progress.
+    progress = 100/100/num_of_test_data*i;
+    waitbar(progress, h, sprintf('%d%%',progress*100));
+    
     % Print the number of the image that is currently classified.
     if (show_log == 1)
       fprintf('%03d - ', i);
@@ -105,8 +121,14 @@ function k_nearest_neighbours(k, num_of_train_data, num_of_test_data, show_log)
       end
     end
   end
+  waitbar(1, h, 'Finishing ...');
   
   % Print the total accuracy.
-  fprintf('Tested images: %d | Matches: %d | Mismatches: %d\n', num_of_test_data, num_of_test_data-errors, errors);
-  fprintf('Total Accuracy: %d%%\n', round(current_accuracy*100*100)/100);
+  %fprintf('Tested images: %d | Matches: %d | Mismatches: %d\n', num_of_test_data, num_of_test_data-errors, errors);
+  %fprintf('Total Accuracy: %d%%\n', round(current_accuracy*100*100)/100);
+  %fprintf('Total Error Rate: %d%%\n', 100 - round(current_accuracy*100*100)/100);
+  fprintf('Train images: %d | Test Images: %d | k: %d | Error Rate: %d%%\n', num_of_train_data, num_of_test_data, k, 100 - round(current_accuracy*100*100)/100)
+
+  % Close waitbar.
+  close(h);
 end
